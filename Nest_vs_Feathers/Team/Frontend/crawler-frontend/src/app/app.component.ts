@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ModelService} from './model/model.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title = 'crawler-frontend';
-  public username = '';
-  public password = '';
+  constructor(
+    private model: ModelService
+  ) {
+  }
 }
