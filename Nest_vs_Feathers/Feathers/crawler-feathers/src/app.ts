@@ -2,7 +2,6 @@ import path from 'path';
 import favicon from 'serve-favicon';
 import compress from 'compression';
 import helmet from 'helmet';
-import cors from 'cors';
 
 import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
@@ -17,10 +16,17 @@ import services from './services';
 import appHooks from './app.hooks';
 import channels from './channels';
 import authentication from './authentication';
+import FeathersChannel from "./feathers-channel";
 // Don't remove this comment. It's needed to format import lines nicely.
 
+const cors = require('cors');
 const app: Application = express(feathers());
+app.use(cors());
+const feathersChannel = new FeathersChannel();
 
+app.post('/feathers', (req,res) => {
+  feathersChannel.handle(req,res);
+});
 // Load app configuration
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing

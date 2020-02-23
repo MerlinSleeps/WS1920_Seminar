@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import {User} from './user';
+import {FeathersChannel} from '../channels/feathers-channel';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModelService {
-  constructor() {
+  constructor(
+    public http: HttpClient
+  ) {
     this.date = new Date().toISOString();
   }
   public static readonly USER_DATA = 'user-data';
   public date: string;
-  public userName: string;
   public userList: User[] = [];
+  public feathersChannel: FeathersChannel;
   private dateMillis = 0;
+
+  public initChannels() {
+    this.feathersChannel = new FeathersChannel();
+    this.feathersChannel.model = this;
+  }
 
   user_data(id: number, name: string, password: string, date: string) {
     const user = this.getOrCreateUser(id);
@@ -22,16 +31,21 @@ export class ModelService {
       user.name = name;
       user.password = password;
       user.date = date;
-      const event = {
-        eventType: ModelService.USER_DATA,
-        id: user.id,
-        name: user.name,
-        password: user.password,
-        date: user.date
-      };
+      const event = this.buildUserEvent(user);
       // TODO: send event to the backend
       return user;
     }
+  }
+
+  public buildUserEvent(user: User) {
+    const event = {
+      eventType: ModelService.USER_DATA,
+      id: user.id,
+      name: user.name,
+      password: user.password,
+      date: user.date
+    };
+    return event;
   }
 
   getOrCreateUser(id: number) {

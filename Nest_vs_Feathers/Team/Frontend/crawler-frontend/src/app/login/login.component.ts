@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.username,
         this.password,
         date);
-      console.log(`${user.name} is ready for the backend`);
+      this.model.feathersChannel.synchronize();
     }
   }
 }

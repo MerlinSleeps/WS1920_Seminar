@@ -7,6 +7,7 @@ import {ShowModule} from './show/show.module';
 import {FormsModule} from '@angular/forms';
 import {LoginModule} from './login/login.module';
 import {ModelService} from './model/model.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {ModelService} from './model/model.service';
         AppRoutingModule,
         ShowModule,
         LoginModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
     ],
   providers: [ModelService],
   bootstrap: [AppComponent]
