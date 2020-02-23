@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~semantic-ui-offline/semantic.min.css";
+
+body {
+  margin-top: 200px;
+  padding: 0;
+  text-align: center;
+}
+
+#dark-mode-toggle:checked + main {
+  --bg-color: #26242E;
+  --text-color: #FFF;
+}
+
+:root {
+  --bg-color: #FFF;
+  --text-color: #000;
+}
+
+main {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
