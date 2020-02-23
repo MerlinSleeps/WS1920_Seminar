@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'crawler-frontend';
+  public title = 'crawler-frontend';
+  public username = '';
+  public password = '';
+
+  loginAction() {
+    console.log(`logging in as ${this.username}`);
+  }
+
+  signinAction() {
+    console.log(`signing in as ${this.username}`);
+  }
 }

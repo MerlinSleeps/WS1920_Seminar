@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ShowModule} from './show/show.module';
 import {ScrapperService} from './scrapper/scrapper.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ShowModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ShowModule,
+        FormsModule
+    ],
   providers: [ScrapperService],
   bootstrap: [AppComponent]
 })
