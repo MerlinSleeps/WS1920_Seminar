@@ -1,24 +1,2 @@
 
-<input id="dark-mode-toggle" type="checkbox" hidden="true">
-
-<main>
-  <h1>User Login</h1>
-  <p>Login:
-    <input [(ngModel)]="username" placeholder="enter your name...">
-  </p>
-  <p>Password: 
-    <input [(ngModel)]="password" placeholder="enter your password...">
-  </p>
-
-
-  <div class="row">
-    <button (click)="loginAction()">LOGIN</button>
-    <button (click)="signinAction()">SIGNIN</button>
-  </div>
-  <p>
-    <label class="dark-mode-btn" for="dark-mode-toggle">go dark</label>
-  </p>
-</main>
-
-
 <router-outlet></router-outlet>

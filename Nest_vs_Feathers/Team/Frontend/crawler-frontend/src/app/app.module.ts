@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {ShowModule} from './show/show.module';
 import {ScrapperService} from './scrapper/scrapper.service';
 import {FormsModule} from '@angular/forms';
+import {LoginModule} from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {FormsModule} from '@angular/forms';
         BrowserModule,
         AppRoutingModule,
         ShowModule,
+        LoginModule,
         FormsModule
     ],
   providers: [ScrapperService],

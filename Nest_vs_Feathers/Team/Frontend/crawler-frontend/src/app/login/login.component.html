@@ -1,0 +1,28 @@
+
+<h1>User Login</h1>
+<div class="ui centered grid container">
+  <div class="row">
+    <div class="ui input">
+      <input id="username-input" [(ngModel)]="username" type="text" placeholder="username">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ui input">
+      <input id="password-input" [(ngModel)]="password" type="text" placeholder="password">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ui animated button" tabindex="0" (click)="loginAction()">
+      <div class="visible content">login</div>
+      <div class="hidden content">
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+    <div class="ui animated button" tabindex="0" (click)="signinAction()">
+      <div class="visible content">signin</div>
+      <div class="hidden content">
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
