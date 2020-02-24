@@ -16,10 +16,21 @@ export class FeathersChannel {
     }
     this.model.http.post(`${environment.feathersURL}/feathers`, message)
       .subscribe((data) => this.handleResponse(data));
+
     // handle backend events
   }
 
   private handleResponse(data: any) {
     console.log(data);
+  }
+
+  access() {
+    const message = {
+      strategy: 'local',
+      email: 'admin@example.com',
+      password: 'secret'
+    };
+    const answer = this.model.http.post('http://localhost:3030/authentication', message);
+    console.log(answer.toPromise());
   }
 }

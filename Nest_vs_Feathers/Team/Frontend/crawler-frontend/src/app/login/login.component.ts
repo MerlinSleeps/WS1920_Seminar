@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginAction() {
+    const access = this.model.feathersChannel.access();
     if (this.username !== '' && this.password !== '') {
       console.log(`logging in as ${this.username}`);
       const date = new Date().toISOString();
