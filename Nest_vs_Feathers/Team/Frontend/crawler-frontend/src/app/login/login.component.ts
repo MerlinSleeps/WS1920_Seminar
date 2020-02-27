@@ -31,14 +31,17 @@ export class LoginComponent implements OnInit {
   }
 
   signinAction() {
-    if (this.username !== '' && this.password !== '') {
-      console.log(`signing in as ${this.username}`);
-      const date = new Date().toISOString();
-      const user = this.model.user_data(this.model.userList.length,
-        this.username,
-        this.password,
-        date);
-      this.model.feathersChannel.synchronize();
-    }
+    // currently there's no logic for knowing which backend is online so just change those urls
+    this.model.http.post('http://localhost:3000/users', {username: 'jack', password: 'abc'})
+      .subscribe(next => console.log(next));
+    // if (this.username !== '' && this.password !== '') {
+    //   console.log(`signing in as ${this.username}`);
+    //   const date = new Date().toISOString();
+    //   const user = this.model.user_data(this.model.userList.length,
+    //     this.username,
+    //     this.password,
+    //     date);
+    //   this.model.feathersChannel.synchronize();
+    // }
   }
 }
