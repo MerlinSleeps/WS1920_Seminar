@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModelService} from '../model/model.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +31,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  signinAction() {
+  signinAction(username: string, password: string) {
     // currently there's no logic for knowing which backend is online so just change those urls
-    this.model.http.post('http://localhost:3000/users', {username: 'jack', password: 'abc'})
+    this.model.http.post(`${environment.expressURL}/users`, {username, password})
       .subscribe(next => console.log(next));
+
+    // *** FEATHERS
     // if (this.username !== '' && this.password !== '') {
     //   console.log(`signing in as ${this.username}`);
     //   const date = new Date().toISOString();
