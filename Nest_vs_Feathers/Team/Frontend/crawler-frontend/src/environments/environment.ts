@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   feathersURL: 'http://localhost:3030',
-  expressURL: 'http://localhost:3000',
+  expressURL: 'http://localhost:3000', URL: undefined
+
 };
 
 /*

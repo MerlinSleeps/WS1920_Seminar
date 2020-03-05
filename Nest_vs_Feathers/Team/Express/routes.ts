@@ -7,18 +7,6 @@ export { app as routes };
 
 const users = [];
 
-app.get('/', ((req, res) => {
-    res.send('hello world!')
-}));
-
-app.get('/users', ((req, res) => {
-    res.send(users)
-}));
-
-app.get('/users/:name', ((req, res) => {
-    res.send(req.body.name)
-}));
-
 app.post('/users', ((req, res) => {
     const schema = {
         name: joi.string().min(1).required(),
@@ -38,9 +26,28 @@ app.post('/users', ((req, res) => {
     res.send(user);
 }));
 
+app.get('/', ((req, res) => {
+    res.send('hello world!')
+}));
+
+app.get('/users', ((req, res) => {
+    res.send(users)
+}));
+
+app.get('/users/:name', ((req, res) => {
+    res.send(req.body.name)
+}));
+
+
+
 app.delete('/users/:name', ((req, res) => {
-    users.splice(users.indexOf(req.body),1);
-    res.send({});
+    const user = users.find(u => u.name === req.params.name);
+    if (!user) res.send(404).send('User does mot exist!');
+
+    const index = users.indexOf(user);
+    users.splice(index, 1);
+
+    res.send(user);
 }));
 
 app.patch('/users/:name', ((req, res) => {

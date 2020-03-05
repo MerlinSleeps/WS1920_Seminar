@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
 
   signinAction(username: string, password: string) {
     // currently there's no logic for knowing which backend is online so just change those urls
-    this.model.http.post(`${environment.expressURL}/users`, {username, password})
+
+    this.model.http.post(`${environment.URL}/users`, {username, password})
       .subscribe(next => console.log(next));
 
     // *** FEATHERS
