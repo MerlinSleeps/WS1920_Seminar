@@ -1,53 +1,66 @@
-<main class="flex flex-column">
+<div class="container-lg mt-5" align="center">
   <header class="title-bar flex flex-row flex-center">
     <div class="title-wrapper block center-element">
       <img class="logo" src="http://feathersjs.com/img/feathers-logo-wide.png"
            alt="Feathers Logo">
-      <span class="title">Chat</span>
     </div>
   </header>
 
-  <div class="flex flex-row flex-1 clear">
-    <aside class="sidebar col col-3 flex flex-column flex-space-between" *ngIf="users | async as users">
-      <header class="flex flex-row flex-center">
-        <h4 class="font-300 text-center">
-          <span class="font-600 online-count">{{users.length}}</span> users
-        </h4>
-      </header>
+  <div class="row mt-3">
 
-      <ul class="flex flex-column flex-1 list-unstyled user-list">
-        <li *ngFor="let user of users">
-          <a class="block relative" href="#">
-            <img [src]="user.avatar" alt="" class="avatar">
-            <span class="absolute username">{{user.email}}</span>
-          </a>
-        </li>
-      </ul>
-      <footer class="flex flex-row flex-center">
-        <a href="#" id="logout" class="button button-primary" (click)="logOut()">
-          Sign Out
-        </a>
-      </footer>
-    </aside>
+    <div class="col">
+      <div class="container" *ngIf="users | async as users">
+        <h4>{{users.length}} users</h4>
+        <ul class="list-group">
+          <li *ngFor="let user of users">
+            <h4><span class="badge badge-secondary">{{user.email}}</span></h4>
+          </li>
+        </ul>
+      </div>
+      <form class="flex flex-row flex-space-between" id="send-message">
+        <input [(ngModel)]="message" class="form-control" type="text" name="message" placeholder="enter message...">
+      </form>
+      <div class="row ml-auto mt-3">
+        <button class="btn btn-outline-secondary mr-3" (click)="sendMessage(message); message = ''">Send</button>
+        <button class="btn btn-outline-secondary mr-3" id="logout" (click)="logOut()">Sign Out</button>
+        <button class="btn btn-outline-secondary" (click)="fetchTweets()">Get Tweets</button>
+      </div>
+    </div>
 
-    <div class="flex flex-column col col-9">
-      <main class="chat flex flex-column flex-1 clear" #chat [scrollTop]="chat.scrollHeight - chat.clientHeight">
-        <div class="message flex flex-row" *ngFor="let message of messages | async">
-          <img [src]="message.user.avatar" [alt]="message.user.email" class="avatar">
-          <div class="message-wrapper">
-            <p class="message-header">
-              <span class="username font-600">{{message.user.email}}</span>
-              <span class="sent-date font-300">{{message.createdAt | date:'MMM dd, hh:mm:ss'}}</span>
-            </p>
-            <p class="message-content font-300">{{message.text}}</p>
+    <div class="col">
+      <div class="flex flex-column col col-9">
+        <main class="chat flex flex-column flex-1 clear" #chat [scrollTop]="chat.scrollHeight - chat.clientHeight">
+          <div class="container" *ngFor="let message of messages | async">
+            <div class="card border-dark mb-3">
+              <div class="card-header">{{message.user.email}}</div>
+              <div class="card-body text-dark">
+                <p class="card-text">{{message.text}}</p>
+                <small>{{message.createdAt | date:'MMM dd, hh:mm:ss'}}</small>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="container">
+        <div class="container" *ngFor="let tweet of tweets | async">
+          <div class="card border-dark mb-3">
+            <div class="card-header">{{tweet.createdAt | date:'MMM dd, hh:mm:ss'}}</div>
+            <div class="card-body text-dark">
+              <p class="card-text">{{tweet.output}}</p>
+              <div class="card-text">
+                Visit: <a href="{{tweet.url}}" class="card-link">{{tweet.url}}</a>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
-
-      <form class="flex flex-row flex-space-between" id="send-message">
-        <input #message type="text" name="text" class="flex flex-1">
-        <button class="button-primary" (click)="sendMessage(message.value); message.value = ''">Send</button>
-      </form>
+      </div>
     </div>
   </div>
-</main>
+
+
+
+
+</div>

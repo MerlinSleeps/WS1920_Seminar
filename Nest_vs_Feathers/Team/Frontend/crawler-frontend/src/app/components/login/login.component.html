@@ -1,31 +1,26 @@
-<main class="login container">
-  <div class="row">
-    <div class="col-12 col-6-tablet push-3-tablet text-center heading">
-      <h1 class="font-100">Log in or signup</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 col-6-tablet push-3-tablet col-4-desktop push-4-desktop">
-      <form class="form">
-        <fieldset>
-          <input #email class="block" type="email" name="email" placeholder="email">
-        </fieldset>
+<div class="container">
+  <div class="col-md-6 offset-md-3 mt-4">
+    <h3>Login or Signup</h3>
+    <form>
+      <div class="form-group">
+        <input [(ngModel)]="email" class="form-control" type="email" name="email" placeholder="email">
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="password" class="form-control" type="password" name="password" placeholder="password">
+      </div>
 
-        <fieldset>
-          <input #password class="block" type="password" name="password" placeholder="password">
-        </fieldset>
-
-        <button type="button" id="login" class="button button-primary block signup" (click)="login(email.value, password.value)">
+      <div class="container">
+        <button id="login" class="btn btn-outline-secondary mr-3" (click)="login(email, password)">
           Log in
         </button>
 
-        <button type="button" id="signup" class="button button-primary block signup" (click)="signup(email.value, password.value)">
-          Signup
+        <button id="signup" class="btn btn-outline-secondary" (click)="signup(email, password)">
+          Sign up
         </button>
-      </form>
-      <ul>
-        <li *ngFor="let m of messages">{{m}}</li>
-      </ul>
-    </div>
+      </div>
+    </form>
+    <ul>
+      <li *ngFor="let m of messages">{{m}}</li>
+    </ul>
   </div>
-</main>
+</div>

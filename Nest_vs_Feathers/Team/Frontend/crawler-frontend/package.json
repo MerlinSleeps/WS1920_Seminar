@@ -23,6 +23,7 @@
     "@feathersjs/feathers": "^4.5.3",
     "@feathersjs/socketio-client": "^4.5.3",
     "@getbase/base": "^4.1.3",
+    "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "feathers-reactive": "^0.8.1",
     "rxjs": "~6.5.4",

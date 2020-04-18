@@ -48,14 +48,5 @@ export class LoginComponent {
         .then(() => this.messages.push('User Created'))
         .catch(err => this.messages.push('Could not create user!'));
 
-    // if (this.username !== '' && this.password !== '') {
-    //   console.log(`signing in as ${this.username}`);
-    //   const date = new Date().toISOString();
-    //   const user = this.model.user_data(this.model.userList.length,
-    //     this.username,
-    //     this.password,
-    //     date);
-    //   this.model.feathersChannel.signIn(user);
-    // }
   }
 }

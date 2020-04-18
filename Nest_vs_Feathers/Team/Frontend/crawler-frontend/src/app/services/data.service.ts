@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Feathers} from './feathers.service';
+import {watch} from 'fs';
 
 @Injectable()
 export class DataService {
@@ -25,6 +26,13 @@ export class DataService {
       .find();
   }
 
+  tweets$() {
+    return (this.feathers
+      .service('tweets'))
+      .watch()
+      .find();
+  }
+
   sendMessage(message: string) {
     if (message === '') {
       return;
@@ -35,5 +43,11 @@ export class DataService {
       .create({
         text: message
       });
+  }
+
+  fetchTweets() {
+    this.feathers
+      .service('tweets')
+      .create({});
   }
 }

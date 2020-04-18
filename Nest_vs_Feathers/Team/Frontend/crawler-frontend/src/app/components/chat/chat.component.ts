@@ -14,7 +14,8 @@ import {Paginated} from '@feathersjs/feathers';
 export class ChatComponent {
   messages: Observable<any[]>;
   users: Observable<any[]>;
-  tweets: string[];
+  tweets: Observable<any[]>;
+  message: string;
 
   constructor(
     private data: DataService,
@@ -28,6 +29,10 @@ export class ChatComponent {
     this.users = data.users$().pipe(
       map((u: Paginated<any>) => u.data)
     );
+
+    this.tweets = data.tweets$().pipe(
+      map((t: Paginated<any>) => t.data)
+    );
   }
 
   sendMessage(message: string) {
@@ -36,5 +41,9 @@ export class ChatComponent {
 
   logOut() {
     this.auth.logOut();
+  }
+
+  fetchTweets() {
+    this.data.fetchTweets();
   }
 }
