@@ -6,17 +6,19 @@ export default (options = {}): Hook => {
   return async (context: HookContext) => {
     const { app, method, result, params } = context;
 
-    // Ensure contacts is an array. If it's a single contact, wrap it into an array
-    const contacts = method === "find" ? result.data : [result];
+    const addUser = async (message: any) => {
+      const user = await app.service('users').get(message.userId, params)
+      return {
+        ...message,
+        user
+      };
+    };
 
-    // Fetch user object from each contact's createdBy
-    await Promise.all(
-      contacts.map(async (contact: any) => {
-        contact.user = await app
-          .service("users")
-          .get(contact.createdBy, params);
-      })
-    );
+    if (method === 'find') {
+      context.result.data = await Promise.all(result.data.map(addUser));
+    } else {
+      context.result = await addUser(result);
+    }
 
     return context;
   };

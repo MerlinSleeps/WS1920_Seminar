@@ -2,19 +2,20 @@
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 import { Hook, HookContext } from '@feathersjs/feathers';
 
-export default (options = {}): Hook => {
+export default (): Hook => {
   return async (context: HookContext) => {
-    // Get authenticated user
-    const user = context.params.user;
-
-    // Extract Submitted Data
     const { data } = context;
 
-    // Add new Fields
+    if (!data.text) {
+      throw new Error('Missing text');
+    }
+    const user = context.params.user;
+    const text = data.text.substring(0, 400);
+
     context.data = {
-      ...data, // Preserve submitted data
-      createdBy: user._id,
-      createdOn: new Date()
+      text,
+      userId: user._id,
+      createdAt: new Date().getTime()
     };
     return context;
   };
