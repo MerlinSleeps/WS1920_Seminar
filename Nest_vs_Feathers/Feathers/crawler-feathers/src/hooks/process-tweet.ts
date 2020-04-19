@@ -6,6 +6,11 @@ export default (): Hook => {
   return async (context: HookContext) => {
     const { data } = context;
 
+    let name = 'netflix';
+    if (data.name) {
+      name = data.name;
+    }
+
     var Twit = require('twit');
 
     var T = new Twit({
@@ -16,7 +21,7 @@ export default (): Hook => {
     });
     let promise = new Promise(resolve => {
       T.get('statuses/user_timeline',
-        {screen_name: 'netflix', count:1},
+        {screen_name: name, count:1},
         function (err: Error, data: any, response: any) {
         let text = '';
         for (const tweetObj of data){

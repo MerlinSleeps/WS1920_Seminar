@@ -16,6 +16,7 @@ export class ChatComponent {
   users: Observable<any[]>;
   tweets: Observable<any[]>;
   message: string;
+  twitterAccount: string;
 
   constructor(
     private data: DataService,
@@ -43,7 +44,7 @@ export class ChatComponent {
     this.auth.logOut();
   }
 
-  fetchTweets() {
-    this.data.fetchTweets();
+  fetchTweets(twitterAccount: string) {
+    this.data.fetchTweets(twitterAccount);
   }
 }

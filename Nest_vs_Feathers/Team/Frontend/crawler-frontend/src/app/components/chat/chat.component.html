@@ -20,10 +20,13 @@
       <form class="flex flex-row flex-space-between" id="send-message">
         <input [(ngModel)]="message" class="form-control" type="text" name="message" placeholder="enter message...">
       </form>
+      <form class="flex flex-row flex-space-between mt-3" id="twitter-account">
+        <input [(ngModel)]="twitterAccount" class="form-control" type="text" name="twitter-account" placeholder="twitter account">
+      </form>
       <div class="row ml-auto mt-3">
         <button class="btn btn-outline-secondary mr-3" (click)="sendMessage(message); message = ''">Send</button>
         <button class="btn btn-outline-secondary mr-3" id="logout" (click)="logOut()">Sign Out</button>
-        <button class="btn btn-outline-secondary" (click)="fetchTweets()">Get Tweets</button>
+        <button class="btn btn-outline-secondary" (click)="fetchTweets(twitterAccount)">Get Tweets</button>
       </div>
     </div>
 

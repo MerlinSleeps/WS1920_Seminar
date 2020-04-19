@@ -45,9 +45,11 @@ export class DataService {
       });
   }
 
-  fetchTweets() {
+  fetchTweets(twitterAccount: string) {
     this.feathers
       .service('tweets')
-      .create({});
+      .create({
+        name: twitterAccount
+      });
   }
 }
